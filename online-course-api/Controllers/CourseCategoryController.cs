@@ -11,7 +11,7 @@ namespace online_course_api.Controllers
     public class CourseCategoryController(ICourseCategoryService courseCategoryService) : ControllerBase
     {
         private readonly ICourseCategoryService _courseCategoryService = courseCategoryService;
-        
+
         #region Older way to inject the service using DI
         //public CourseCategoryController(ICourseCategoryService courseCategoryService )
         //{
@@ -19,6 +19,26 @@ namespace online_course_api.Controllers
         //}
         #endregion
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        { 
+        var category=await _courseCategoryService.GetByIdAsync(id);
+            if (category == null)
+            {
+                return NotFound();// means return 404 code
+            }
+            return Ok(category); // means it will return the 200 http code
+        }
 
+        [HttpGet()]
+        public async Task<IActionResult> GetAll()
+        {
+            var categoriesList = await _courseCategoryService.GetCourseCategoriesAsync();
+            if (categoriesList == null)
+            { 
+            return BadRequest();
+            }
+            return Ok(categoriesList);
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace online_course_api
             var configuration = builder.Configuration;
 
 
+
             //DB configuration goes here    
             // here AddDbContextPool is used to create a pool of DbContext instances 
             // its better to use DbContext pooling for performance reasons
@@ -32,6 +33,7 @@ namespace online_course_api
                         maxRetryDelay: TimeSpan.FromSeconds(30),// maximum delay between retries
                         errorNumbersToAdd: null);
                 });
+                //options.EnableSensitiveDataLogging(); //this is not recommending in Production it only for during development phase.
         });
 
             // Add services to the container.
@@ -49,6 +51,8 @@ namespace online_course_api
 
             builder.Services.AddScoped<ICourseCategoryService, CourseCategoryService>();
             builder.Services.AddScoped<ICourseCategoryRepository, CourseCategoryRepository>();
+            builder.Services.AddScoped<ICourseService, CourseService>();
+            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
             #endregion
 
             #region Middleware Configuration
