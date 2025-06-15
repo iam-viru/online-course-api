@@ -17,7 +17,7 @@ namespace online_course.service
             //when we need data, we need to use await keyword in front of the calling method
             //also whenever the is await keyword async keyword is also needed in the method signature
             var courseCategory = await _courseCategoryRepository.GetByIdAsync(id);
-            return new CourseCategoryModel
+            return courseCategory==null?null: new CourseCategoryModel
             {
                 CategoryId = courseCategory.CategoryId,
                 CategoryName = courseCategory.CategoryName,
