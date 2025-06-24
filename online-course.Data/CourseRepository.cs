@@ -30,6 +30,7 @@ namespace online_course.Data
                 {
                     CourseId = c.CourseId,
                     Tittle = c.Title,
+                    Thumbnail=c.Thumbnail,
                     Description = c.Description,
                     CourseType = c.CourseType,
                     Price = c.Price,
