@@ -10,6 +10,7 @@ namespace online_course.core.Models
     {
         public int CourseId { get; set; }
         public string Tittle { get; set; }
+        public string? Thumbnail { get; set; }
         public string Description { get; set; }
         public string CourseType { get; set; }
         public decimal Price { get; set; }
